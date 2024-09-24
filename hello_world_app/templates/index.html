@@ -1,0 +1,51 @@
+<!-- myapp/templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, World!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #output {
+            font-family: monospace;
+            white-space: pre;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <script>
+        function typeWriter(text, delay = 100) {
+            const output = document.getElementById('output');
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    output.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, delay);
+                } else {
+                    setTimeout(() => {
+                        output.innerHTML = '';
+                        i = 0;
+                        type();
+                    }, 2000); // Delay before restarting the typing
+                }
+            }
+            type();
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            typeWriter('Hello, World!');
+        });
+    </script>
+</body>
+</html>
